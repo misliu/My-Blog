@@ -1,6 +1,6 @@
 ## 初识javascript设计模式一
 
-### 1、Constructor模式
+### Constructor模式
 
 #### a、对象赋值方法
 
@@ -75,4 +75,30 @@ Person.prototype.sayName = function(){
 }
 ```
 这样就实现了每个对象实例都共享一个sayName方法。
-需要注意的是，每当代码读取对象的某个熟悉的时候
+需要注意的是，每当代码读取对象的某个属性的时候都会执行一次搜索，先从实例本身，如果找到了就返回，如果没有就在原型中找，直到找到Object如果没有就返回undefined，下面看一个例子：
+
+```js
+function Person(name){
+    this.name = name;
+}
+Person.prototype.sayName = function(){
+        console.log(this.name);
+}
+Person.prototype.age = 18;
+var p1 = new Person('mdzz1');
+var p2 = new Person('mdzz2');
+p1.age = 19;
+console.log(p1.age)//19
+console.log(p2.age)//18
+```
+不难看出为p1添加一个实例属性时，这个属性会屏蔽原型中的同名属性，也可以通过 `hasOwnProperty` 来确定是访问的原型属性还是实例属性
+
+```js
+console.log(p1.hasOwnProperty('name')) //---true
+console.log(p2.hasOwnProperty('name')) //---true
+console.log(p1.hasOwnProperty('age')) //---true
+console.log(p2.hasOwnProperty('age')) //---false
+```
+以上参考了《javascript设计模式》、《javascript高级程序设计》如果有写的不对的请留言指出，希望能用这种和大家分享的方法能学到更多^_^
+
+[依旧附上我的原文链接](http://blog.jishuzhai.site/#/article/初识javascript设计模式一?_k=zxgtrj)
