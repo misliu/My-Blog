@@ -50,3 +50,9 @@ var basketModule = (function(){
 })()
 ```
 这种模式能改善可读性，但是这种指针的形势只适用于函数
+
+参考书籍：《javascript设计模式》
+
+参考文章：[JavaScript Module Pattern: In-Depth](http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html)
+
+[依旧附上原文链接](http://blog.jishuzhai.site/#/article/javascript设计模式二?_k=ficyxs)
